@@ -73,6 +73,16 @@ namespace WindowsFormsApp1
             NumberInputing = true;
         }
 
+        private void Trigonometry(double x)
+        {
+            TextForComputation.Text = x.ToString();
+            AddCharacter(ArithmeticExpression);
+
+            Inputing = Convert.ToDouble(TextForInput.Text);
+            NumberInputing = true;
+            NewNumber = true;
+        }
+
         private void ButtonOne_Click(object sender, EventArgs e)
         {
             Comput(1);
@@ -186,7 +196,7 @@ namespace WindowsFormsApp1
             TextForComputation.Text = NumberForComputation.ToString();
             if (NumberForComputation == 0)
             {
-                TextForComputation.Text = "∞";
+                TextForComputation.Text = "NaN";
                 NumberForComputation = 0;
                 Inputing = 0;
             }
@@ -203,7 +213,7 @@ namespace WindowsFormsApp1
 
         private void ButtonDegree_Click(object sender, EventArgs e)
         {
-            if ((TextForComputation.Text != "NaN") && (TextForComputation.Text != "∞") && (NumberInputing = true))
+            if ((TextForComputation.Text != "NaN") && (NumberInputing = true))
             {
                 NumberForComputation = NumberForComputation * NumberForComputation;
                 TextForComputation.Text = NumberForComputation.ToString();
@@ -278,7 +288,7 @@ namespace WindowsFormsApp1
             {
                 if (Inputing == 0)
                 {
-                    TextForComputation.Text = "∞";
+                    TextForComputation.Text = "NaN";
                     NumberForComputation = 0;
                     Inputing = 0;
                 }
@@ -301,7 +311,7 @@ namespace WindowsFormsApp1
                     Inputing = 0;
                 }
             }
-            if ((TextForComputation.Text != "∞") && (TextForComputation.Text != "NaN"))
+            if (TextForComputation.Text != "NaN")
             {
                 TextForComputation.Text = NumberForComputation.ToString();
                 NumberInputing = true;
@@ -367,6 +377,102 @@ namespace WindowsFormsApp1
             else
             {
                 Buffer = NumberForComputation;
+            }
+        }
+
+        private void ButtonSin_Click(object sender, EventArgs e)
+        {
+
+            double x = Math.Sin(Convert.ToDouble(TextForInput.Text) * (Math.PI / 180));
+
+            Console.WriteLine("Sin");
+            Console.WriteLine(Convert.ToString(x));
+
+            if (((x < 0.0000000001) && (x > 0)) || ((x > -0.0000000001) && (x < 0)))
+            {
+                x = 0;
+            }
+
+            Console.WriteLine(Convert.ToString(x));
+
+            Trigonometry(x);
+        }
+
+        private void ButtonCos_Click(object sender, EventArgs e)
+        {
+            double x = Math.Cos(Convert.ToDouble(TextForInput.Text) * (Math.PI / 180));
+
+            Console.WriteLine("Sin");
+            Console.WriteLine(Convert.ToString(x));
+
+            if (((x < 0.0000000001) && (x > 0)) || ((x > -0.0000000001) && (x < 0)))
+            {
+                x = 0;
+            }
+
+            Console.WriteLine(Convert.ToString(x));
+
+            Trigonometry(x);
+        }
+
+        private void ButtonTg_Click(object sender, EventArgs e)
+        {
+            double x = Math.Cos(Convert.ToDouble(TextForInput.Text) * Math.PI / 180);
+            double y = Math.Sin(Convert.ToDouble(TextForInput.Text) * Math.PI / 180);
+
+            if (((x < 0.0000000001) && (x > 0)) || ((x > -0.0000000001) && (x < 0)))
+            {
+                x = 0;
+            }
+
+            if (((y < 0.0000000001) && (y > 0)) || ((y > -0.0000000001) && (y < 0)))
+            {
+                y = 0;
+                
+            }
+
+            if (x != 0)
+            {
+                Trigonometry(y / x);
+            }
+            else
+            {
+                TextForComputation.Text = "NaN";
+                NumberForComputation = 0;
+                Inputing = Convert.ToDouble(TextForInput.Text);
+                NumberInputing = true;
+                NewNumber = true;
+            }
+        }
+
+        private void ButtonCtg_Click(object sender, EventArgs e)
+        {
+            double x = Math.Cos(Convert.ToDouble(TextForInput.Text) * Math.PI / 180);
+            double y = Math.Sin(Convert.ToDouble(TextForInput.Text) * Math.PI / 180);
+
+            if (((x < 0.0000000001) && (x > 0)) || ((x > -0.0000000001) && (x < 0)))
+            {
+                x = 0;
+            }
+
+            if (((y < 0.0000000001) && (y > 0)) || ((y > -0.0000000001) && (y < 0)))
+            {
+                y = 0;
+                NumberForComputation = 0;
+                Inputing = 0;
+            }
+
+            if (y != 0)
+            {
+                Trigonometry(x / y);
+            }
+            else
+            {
+                TextForComputation.Text = "NaN";
+                NumberForComputation = 0;
+                Inputing = Convert.ToDouble(TextForInput.Text);
+                NumberInputing = true;
+                NewNumber = true;
             }
         }
     }
